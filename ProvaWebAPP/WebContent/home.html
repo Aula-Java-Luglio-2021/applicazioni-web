@@ -1,0 +1,43 @@
+<html>
+<head> 
+<style>
+    body{
+        background-color: green;
+    }
+    
+    a{
+        color: black;
+    }
+</style>
+</head>   
+
+<body>
+    <!--Esempio di query-string (scritta nell'href)-->
+    <!--La query-string consente solo richieste di tipo get-->
+    <a href="MyServlet?caso=1&nome=marco&cognome=palumbo&password=1234">Manda i dati</a>
+    
+    <!--Un form consente sia richieste di tipo get che di tipo post-->
+    <form action="MyServlet" method="post">
+    <fieldset>    
+    <input type="hidden" name="caso" value="1">
+    <br>
+    <label>Nome</label> 
+    <br>    
+    <input type="text" name="nome" placeholder="Inserisci nome">
+    <br><br>
+    <label>Cognome</label> 
+    <br>    
+    <input type="text" name="cognome" placeholder="Inserisci cognome">
+    <br><br>
+    <label>Password</label> 
+    <br>    
+    <input type="password" name="password" placeholder="Inserisci password">
+    <br><br>
+    <button type="submit">Cliccami</button>    
+    </fieldset>      
+    </form>
+</body>
+
+
+
+</html>
