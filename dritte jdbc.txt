@@ -1,0 +1,102 @@
+DB M S -> Database Management System -> manageriale che consente la manipolazione e la lettura
+dei dati di un db
+
+J DB C -> Java database Connectivity -> Lo implementiamo dal Driver
+(il metodo Class.forName(Driver) permette la lettura del Driver specificando con una
+stringa il percorso della libreria;esempio: "com.mysql.cj.jdbc.Driver" dove com,mysql,
+cj ecc sono singole cartelle)
+Libreria che ci consente di stabilire un 
+collegamento: webapp-db
+
+Gli strumenti che usiamo normalmente sono le
+seguenti interfacce:
+
+1)Connection:permette la connessione tra la webApp ed il dbms/db
+Per inizializzare un oggetto di tipo Connection
+dobbiamo utilizzare il metodo statico getConnection(String url, String user, String pass)
+della classe DriverManager.
+Esempio:
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb","root","");
+Il getConnection() mi ritorna il riferimento di tipo Properties, classe figlia dell'interfaccia
+Connection
+
+2)Statement/PreparedStatement
+Oggetti di questo tipo consentono di mandare al dbms i comandi dml/dql:
+-------------------------------------------------------------------------------------
+-Caso Statement:
+Statement stm = conn.createStatement(); //inizializzazione di un oggetto di tipo Statement
+stm.executeUpdate(comando sql); //Compilo e poi eseguo il codice (modo poco sicuro)
+
+NB: non usa i parametri ?, per cui non occulta i dati sensibili da trasferire al db, e non
+ci mette quindi in sicurezza; inoltre, costringe l'assegnazione dei dati attraverso una
+concatenazione degli stessi. Esempio:
+
+stm.executeUpdate("insert into utenti ("+nome+","+cognome+","+"eta) values ("+.........+")");
+-------------------------------------------------------------------------------------
+-Caso PreparedStatement:
+//Pre-compilo il comando sql occultando i dati coi parametri ?
+PreparedStatement ps = conn.prepareStatement(comando sql); //inizializzazione di un oggetto di tipo PreparedStatement
+ps.executeUpdate(); //Eseguo il comando precedentemente pre-compilato
+
+NB:la precompilazione mi consente di occultare i dati assegnati al comando sql; 
+occultare i dati significa utilizzare i parametri ? prerogativa dell'interfaccia PreparedStatement
+L'utilizzo dei ? inoltre mi regala maggiore comfort in quanto mi evita le concatenazioni che
+avremmo con l'interfaccia Statement
+
+NB2:per assegnare ad ogni ? il relativo dato, l'oggetto di tipo PreparedStatement vanta dei
+seguenti metodi:
+ps.setString(posiz.?, dato); //assegno una stringa se il dato è di tipo varchar/char
+ps.setInt(posiz.?, dato); //assegno un intero se il dato è di tipo int/integer
+ps.setDouble(posiz.?, dato); //assegno un decimale se il dato è di tipo decimal
+ecc ecc.
+
+Esempio pratico:
+//1)Pre-compilo il comando
+PreparedStatement ps = conn.prepareStatement("insert into utenti (nome,cognome,eta) values (?,?,?)");
+//2)Assegno i valori ai parametri ? 
+ps.setString(1, "Pino"); 
+ps.setString(2, "Mauro"); 
+ps.setInt(3, 55); 
+//3)Eseguo il comando precompilato
+ps.executeUpdate();
+-------------------------------------------------------------------------------------
+
+3)ResultSet: permette di recuperare i dati dal db una volta eseguita la query/interrogazione
+Un oggetto di tipo ResultSet si inizializza come segue:
+
+-Se usiamo lo Statement:
+ResultSet rs = stm.executeQuery("select * from utenti"); //Eseguo la query ed inizializzo l'oggetto di tipo ResultSet
+
+-Se usiamo lo PreparedStatement:
+PreparedStatement ps = conn.prepareStatement("select * from utenti"); //pre-compilo una query
+ResultSet rs = ps.executeQuery(); //Eseguo la query pre-compilata dal metodo prepareStatement(query sql)
+
+Una volta inizializzato il ResultSet posso usarlo per chiamare i metodi iteratori: first(),previous(),
+last(),next(),ecc ecc che possiamo immaginare come cursori che si spostano da una riga ad un'altra di
+una specifica tabella. I metodi iteratori hanno come tipo di dato ritornato: boolean. Tali metodi
+ritornano true fino a quando le righe vengono trovate. Vanno quindi chiamati o nel while o nell'if.
+Per recuperare i dati proseguo come segue:
+
+while(rs.next()){
+//L'oggetto di tipo ResultSet ha i getter per ogni tipo di dato (così il PreparedStatement aveva i
+setter per ogni tipo di dato)
+Utente u = new Utente(rs.getString("nome"),rs.getString("cognome"),rs.getInt("eta"));
+lista.add(u); //immaginando che lista sia un oggetto di tipo List<T> dichiarato prima del while
+} 
+
+-------------------------------------------------------------------------------------
+Schema riassuntivo delle dipendenze tra oggetti JDBC
+
+Connection viene inizializzato da DriverManager.getConnection();
+
+Statement viene inizializzato dall'oggetto Connection
+PreparedStatement viene inizializzato dall'oggetto Connection
+
+ResultSet viene inizializzato o dall'oggetto Statement o 
+dall'oggetto PreparedStatement
+-------------------------------------------------------------------------------------
+
+
+
+
+
