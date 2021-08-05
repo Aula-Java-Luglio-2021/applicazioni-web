@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sviluppo di una pagina web</title>
+    <link rel="stylesheet" href="mioStile.css" type="text/Css">
+</head>
+<body>
+<!-- 1)Elementi block-level: è un elemento che forma un blocco separato, 
+può contenere elementi block-level ed elementi inline e gli si possono attribuire delle dimensioni. 
+Gli elementi block-level vengono disposti verticalmente, formando una nuova riga. 
+Un elemento block level di dimensioni non specificate occupa tra margini, bordi, padding e contenuto, 
+tutta la larghezza messa a disposizione del suo box contenitore. 
+In verticale occuperà l’altezza necessaria al suo contenuto.
+NB:gli elementi inline vengono messi sempre a capo da un elemento block-level!!!
+
+Esempi di tag:
+<div> è un blocco contenitore (div è abbreviazione di “DIVisore” )
+<frameset> è un contenitore che permette frames multipli (documenti html) da piazzarsi nel browser
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6> titoli della pagina o dei paragrafi
+<hr> serve per definire una linea orizzontale
+<p> paragrafo: non dovrebbe contenere altri elementi a livello di blocco, comprese le tabelle
+<pre> testo preformattato che viene rendererizzato con gli spazi e le interruzioni di riga
+<table> è usata per presentare set di dati puri: i suoi elementi “figli” si comportano come elementi a livello di blocco
+<form> usato per presentare formulari: i suoi sotto-elementi si comportano come elementi a livello di blocco
+-->
+
+<!--div senza dimensioni specificate: si estende quanto la larghezza del suo contenitore (il body in tal caso)-->
+<div class="divisore">
+    <h1>Lorem Ipsum</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dapibus enim. Maecenas dapibus, 
+        massa sed condimentum accumsan, augue sem fermentum magna, eu finibus enim erat dictum diam. 
+        Cras placerat ante id ante aliquet euismod. Nulla urna erat, luctus sit amet nunc vel, gravida mattis augue. 
+        Phasellus nec suscipit nulla. Sed at tellus ligula. Vestibulum ante ipsum primis in faucibus orci luctus et 
+        ultrices posuere cubilia curae; Ut nec erat velit. Ut hendrerit felis ut tristique blandit. 
+        Cras pretium euismod viverra. Curabitur placerat nisi a diam pretium, vitae cursus magna varius. 
+        Sed convallis ullamcorper pulvinar.
+    </p>
+</div>
+
+<!--div con larghezza del 50% rispetto il body (l'altezza si adatta al contenuto)-->
+<div id="divCentrale" class="divisore">
+    <h1>Lorem Ipsum</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dapibus enim. Maecenas dapibus, 
+        massa sed condimentum accumsan, augue sem fermentum magna, eu finibus enim erat dictum diam. 
+        Cras placerat ante id ante aliquet euismod. Nulla urna erat, luctus sit amet nunc vel, gravida mattis augue. 
+        Phasellus nec suscipit nulla. Sed at tellus ligula. Vestibulum ante ipsum primis in faucibus orci luctus et 
+        ultrices posuere cubilia curae; Ut nec erat velit. Ut hendrerit felis ut tristique blandit. 
+        Cras pretium euismod viverra. Curabitur placerat nisi a diam pretium, vitae cursus magna varius. 
+        Sed convallis ullamcorper pulvinar.
+    </p>
+</div>
+
+<!--div con larghezza del 25% rispetto il body (l'altezza si adatta al contenuto)-->
+<div id="divInferiore" class="divisore">
+    <h1>Lorem Ipsum</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dapibus enim. Maecenas dapibus, 
+        massa sed condimentum accumsan, augue sem fermentum magna, eu finibus enim erat dictum diam. 
+        Cras placerat ante id ante aliquet euismod. Nulla urna erat, luctus sit amet nunc vel, gravida mattis augue. 
+        Phasellus nec suscipit nulla. Sed at tellus ligula. Vestibulum ante ipsum primis in faucibus orci luctus et 
+        ultrices posuere cubilia curae; Ut nec erat velit. Ut hendrerit felis ut tristique blandit. 
+        Cras pretium euismod viverra. Curabitur placerat nisi a diam pretium, vitae cursus magna varius. 
+        Sed convallis ullamcorper pulvinar.
+    </p>
+</div>
+
+<!--Separo gli elementi block-level da quelli inline a seguire-->
+<hr>
+
+<!-- 2)Elementi inline: è un elemento che rimane in linea con il resto del contenuto. 
+Può contenere SOLO altri elementi inline. 
+Ad un elemento inline, a meno che questo non venga dichiarato float, posizionato o modificandone la sua natura 
+con la proprietà display, non si possono attribuire delle dimensioni. Elementi inline adiacenti vengono disposti 
+orizzontalmente. Un elemento inline occuperà sia in orizzontale che in verticale l’altezza necessaria al suo contenuto.
+
+Esempi di tag:
+<a> letteramente "ancora" definisce un link ipertestuale
+<br> denota un a capo
+<cite> indica il titolo di un articolo o un documento citato
+<code> denota il codice di un computer
+<img> immagine (con altezza e larghezza intrinseca)
+<small> denota testo in piccole dimensioni
+<span> è un contenitore per testo da formattare in modo speciale con i dovuti attributi (es. color, ecc.)
+<strong> denota testo importante
+<textarea> una finestra per testo multilinea regolabile manualmente trascinando col mouse (con altezza e larghezza assegnabile)
+-->
+
+<!--3 tag "a" allineati-->
+<a>Link 1</a>
+<a>Link 2</a>
+<a>Link 3</a>
+
+<!--Vado a capo 2 volte-->
+<br>
+<br>
+<cite>Esempio by Mirko: </cite>
+<textarea>
+    Ciao e benvenuto nella pagina tutorial
+    per la distinzione tra elementi block
+    ed inline
+</textarea>
+<img src="logo_html.png">
+
+<!--l'immagine, come gli altri elementi inline, si dispone orizzontalmente rispetto quelli adiacenti;
+per mandarla a capo, usiamo il tag "br"-->
+<br>
+<img src="logo_html.png">
+
+<!--usando ora il tag "p" andiamo automaticamente a capo trattandoli di un elemento in block;
+col tag "span" formattiamo in modo diverso una parte del testo, mantenendoci in orizzontale essendo elemento inline-->
+<p>Tutorial pratico realizzato da <span style="color:blue;font-weight:bold">Mirko</span> con buona pazienza ed attenzione.</p>
+<small>---Fine pagina d'esempio---</small>
+
+    
+</body>
+</html>

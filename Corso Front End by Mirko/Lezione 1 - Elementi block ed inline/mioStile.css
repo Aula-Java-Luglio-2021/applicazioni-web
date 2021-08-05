@@ -1,0 +1,21 @@
+.divisore{
+    border: black solid 1px;
+    background-color: green;
+}
+
+#divCentrale{
+    width: 50%;
+}
+
+#divInferiore{
+    width: 25%;
+}
+
+a{
+    color: blue;
+    width: 30%; /*non viene letto in quanto non è possibile assegnare dimensioni ad un elemento inline*/
+}
+
+textarea{
+    width: 50%; /*elemento inline che può avvalere di un dimensionamento*/
+}

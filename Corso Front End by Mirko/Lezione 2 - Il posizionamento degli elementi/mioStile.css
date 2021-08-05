@@ -1,0 +1,44 @@
+.divisore{
+    width: 30%;
+    border: 1px black solid;
+}
+
+/*Esempio float*/
+.float-sx{
+    float: left;
+    background-color: green;
+}
+
+.float-dx{
+    float: right;
+    background-color: red;
+}
+
+hr{
+    clear: both; /*L'elemento hr va a capo sia rispetto l'elemento flottante di destra che di sinistra */
+}
+
+/*Esempio posizione relativa*/
+.pos-rel-divBlue{
+    position: relative;
+    top: 100px; /*va espresso solo in pixel*/
+    left: 100px;
+    z-index: 1; /*assegno la priorità di sovrapposizione; il div blu andrà sotto quello rosso avendo lo z-index minore*/
+}
+
+.pos-rel-divRed{
+    position: relative;
+    z-index: 2;
+}
+
+/*Esempio  posizione assoluta*/
+.pos-abs-divBlue{
+    position: absolute;
+    left: 100px;
+    z-index: 1; /*assegno la priorità di sovrapposizione; il div blu andrà sotto quello rosso avendo lo z-index minore*/
+}
+
+.pos-abs-divRed{
+    position: absolute;
+    z-index: 2;
+}
